@@ -9,9 +9,33 @@ describe Player do
 
   context 'initialize' do
     it { attacker.dice.class.should eq(Array) }
+    it { attacker.dice.count.should eq(3) }
     it { attacker.role.should eq(:attack) }
     it { defender.dice.class.should eq(Array) }
+    it { defender.dice.count.should eq(2) }
     it { defender.role.should eq(:defend) }
+
+    context 'role constraints' do
+      context 'for attackers' do
+        it 'should limit attacker dice count to 3' do
+          expect { Player.new(4, :attack) }.to raise_error
+        end
+
+        it 'should require at least 1 dice' do
+          expect { Player.new(0, :attack) }.to raise_error
+        end
+      end
+
+      context 'for defenders' do
+        it 'should limit defender dice count to 2' do
+          expect { Player.new(3, :defend) }.to raise_error
+        end
+
+        it 'should require at least 1 dice' do
+          expect { Player.new(0, :defend) }.to raise_error
+        end
+      end
+    end
   end
 
   context '#roll_dice' do
