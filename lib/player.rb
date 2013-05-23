@@ -20,11 +20,11 @@ private
       @dice << Dice.new.value
     end
 
-    if @role == :attack && @dice.count > 3 #|| @dice.count < 1
+    if @role == :attack && @dice.count > 3 || @dice.count < 1
       raise Error
     end
 
-    if @role == :defend && @dice.count > 2 #|| @dice.count < 1
+    if @role == :defend && @dice.count > 2 || @dice.count < 1
      raise Error
     end
   end
