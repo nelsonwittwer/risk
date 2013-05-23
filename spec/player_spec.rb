@@ -4,8 +4,8 @@ require 'pry'
 require_relative '../lib/player'
 
 describe Player do 
-  let(:attacker) { Player.new(3, :attack) }
-  let(:defender) { Player.new(2, :defend) }
+  let(:attacker) { Player.new(:attack, 3) }
+  let(:defender) { Player.new(:defend, 2) }
 
   context 'initialize' do
     it { attacker.dice.class.should eq(Array) }
