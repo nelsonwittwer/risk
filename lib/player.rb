@@ -1,35 +1,23 @@
 require 'dice'
 
 class Player
-  ROLE_ATTRIBUTES = {
-    :attack => 3,
-    :defend => 2
-  }.freeze
-
   attr_accessor :role, :dice
 
-  def initialize
-    @dice = []
+  def initialize(dice_count, user_role)
+    dice_count.times do
+      @dice << Dice.new.value
+    end
+
+    self.role = user_role
   end
 
   def roll_dice
-    @dice = assign_dice
     sort_dice
   end
 
 private
 
-  def assign_dice
-    dice = []
-    ROLE_ATTRIBUTES[self.role].times do
-      dice << Dice.new.value
-    end
-
-    return dice
-  end
-
   def sort_dice
     @dice = @dice.sort.reverse
   end
-
 end

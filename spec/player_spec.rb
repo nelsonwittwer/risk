@@ -4,8 +4,8 @@ require 'pry'
 require_relative '../lib/player'
 
 describe Player do 
-  let(:attacker) { Player.new }
-  let(:defender) { Player.new }
+  let(:attacker) { Player.new(3, :attack) }
+  let(:defender) { Player.new(2, :defend) }
 
   context 'attributes' do
     it { should respond_to :role }
@@ -13,7 +13,9 @@ describe Player do
 
   context 'initialize' do
     it { attacker.dice.class.should eq(Array) }
+    it { attacker.role.should eq(:attack) }
     it { defender.dice.class.should eq(Array) }
+    it { defender.role.should eq(:defend) }
   end
 
   context '#roll_dice' do
