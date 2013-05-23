@@ -30,7 +30,7 @@ describe Player do
     end
 
     context 'defender' do
-      before do 
+      before do
         defender.stub(:assign_dice) { [1, 3] } 
         defender.role = :defend
       end
@@ -39,24 +39,6 @@ describe Player do
         defender.roll_dice
         defender.dice.should eq([3, 1])
       end
-    end
-  end
-
-  context 'attack' do
-    before do
-      attacker.role = :attack
-      attacker.roll_dice
-    end
-
-    it 'should have 3 dice' do
-      attacker.dice.count.should == 3
-    end
-  end
-
-  context 'defend' do
-    before do
-      defender.role = :defend
-      defender.roll_dice
     end
   end
 end

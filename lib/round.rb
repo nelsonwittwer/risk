@@ -1,3 +1,5 @@
+require 'player'
+
 class Round
   attr_reader :attacker, :defender
 
