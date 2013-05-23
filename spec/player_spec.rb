@@ -4,37 +4,59 @@ require 'pry'
 require_relative '../lib/player'
 
 describe Player do 
-  let(:player) { Player.new }
+  let(:attacker) { Player.new }
+  let(:defender) { Player.new }
 
   context 'attributes' do
     it { should respond_to :role }
   end 
 
   context 'initialize' do
-    it { player.dice.class.should eq(Array) }
+    it { attacker.dice.class.should eq(Array) }
+    it { defender.dice.class.should eq(Array) }
   end
 
   context '#roll_dice' do
-    before do 
-      player.stub(:assign_dice) { [1, 6, 3] } 
-      player.role = :attack
+    context 'attacker' do
+      before do 
+        attacker.stub(:assign_dice) { [1, 6, 3] } 
+        attacker.role = :attack
+      end
+
+      it 'should sort dice rolls from highest to lowest' do
+        attacker.roll_dice
+        attacker.dice.should eq([6, 3, 1])
+      end
     end
 
-    it 'should sort dice rolls from highest to lowest' do
-      player.roll_dice
-      player.dice.should eq([6, 3, 1])  
+    context 'defender' do
+      before do 
+        defender.stub(:assign_dice) { [1, 3] } 
+        defender.role = :defend
+      end
+
+      it 'should sort dice rolls from highest to lowest' do
+        defender.roll_dice
+        defender.dice.should eq([3, 1])
+      end
     end
   end
 
   context 'attack' do
-
     before do
-      player.role = :attack
-      player.roll_dice
+      attacker.role = :attack
+      attacker.roll_dice
     end
 
     it 'should have 3 dice' do
-      player.dice.count.should == 3
+      attacker.dice.count.should == 3
+    end
+  end
+
+  context 'defend' do
+    before do
+      defender.role = :defend
+      defender.roll_dice
     end
   end
 end
