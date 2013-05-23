@@ -7,10 +7,6 @@ describe Player do
   let(:attacker) { Player.new(3, :attack) }
   let(:defender) { Player.new(2, :defend) }
 
-  context 'attributes' do
-    it { should respond_to :role }
-  end 
-
   context 'initialize' do
     it { attacker.dice.class.should eq(Array) }
     it { attacker.role.should eq(:attack) }
@@ -21,8 +17,7 @@ describe Player do
   context '#roll_dice' do
     context 'attacker' do
       before do 
-        attacker.stub(:assign_dice) { [1, 6, 3] } 
-        attacker.role = :attack
+        attacker.dice = [1, 6, 3]
       end
 
       it 'should sort dice rolls from highest to lowest' do
@@ -33,8 +28,7 @@ describe Player do
 
     context 'defender' do
       before do
-        defender.stub(:assign_dice) { [1, 3] } 
-        defender.role = :defend
+        defender.dice = [1, 3]
       end
 
       it 'should sort dice rolls from highest to lowest' do
