@@ -6,9 +6,6 @@ class Player
   def initialize(user_role, dice_count)
     set_role(user_role)
     set_dice(dice_count)
-  end
-
-  def roll_dice
     sort_dice
   end
 

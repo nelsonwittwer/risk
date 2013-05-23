@@ -36,28 +36,27 @@ describe Player do
         end
       end
     end
-  end
+    context 'sort_dice' do
+      context 'attacker' do
+        before do 
+          attacker.dice = [1, 6, 3]
+        end
 
-  context '#roll_dice' do
-    context 'attacker' do
-      before do 
-        attacker.dice = [1, 6, 3]
+        it 'should sort dice rolls from highest to lowest' do
+          attacker.roll_dice
+          attacker.dice.should eq([6, 3, 1])
+        end
       end
 
-      it 'should sort dice rolls from highest to lowest' do
-        attacker.roll_dice
-        attacker.dice.should eq([6, 3, 1])
-      end
-    end
+      context 'defender' do
+        before do
+          defender.dice = [1, 3]
+        end
 
-    context 'defender' do
-      before do
-        defender.dice = [1, 3]
-      end
-
-      it 'should sort dice rolls from highest to lowest' do
-        defender.roll_dice
-        defender.dice.should eq([3, 1])
+        it 'should sort dice rolls from highest to lowest' do
+          defender.roll_dice
+          defender.dice.should eq([3, 1])
+        end
       end
     end
   end
