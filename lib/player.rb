@@ -3,7 +3,7 @@ require 'dice'
 class Player
   attr_accessor :role, :dice
 
-  def initialize(dice_count, user_role)
+  def initialize(user_role, dice_count)
     set_role(user_role)
     set_dice(dice_count)
   end
